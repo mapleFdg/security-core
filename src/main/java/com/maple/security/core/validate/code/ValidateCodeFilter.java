@@ -1,6 +1,7 @@
 package com.maple.security.core.validate.code;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.naming.AuthenticationException;
 import javax.servlet.FilterChain;
@@ -31,7 +32,8 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
 
 	private Logger log = LoggerFactory.getLogger(ValidateCodeFilter.class);
 
-	private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
+	@Autowired
+	private ValidateCodeProcessorHolder validateCodeProcessorHolder;
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -45,7 +47,8 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
 		if (StringUtils.equalsIgnoreCase(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM, requestUrl)
 				&& StringUtils.equalsIgnoreCase(requestMethod, "POST")) {
 			try {
-				validateCode(new ServletWebRequest(request, response));
+				validateCodeProcessorHolder.findValidateCodeProcessor("image")
+						.validate(new ServletWebRequest(request, response));
 			} catch (ValidateCodeException e) {
 				authenticationFailureHandler.onAuthenticationFailure(request, response, e);
 				return;
@@ -53,28 +56,4 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
 		}
 		filterChain.doFilter(request, response);
 	}
-
-	private void validateCode(ServletWebRequest request) {
-		String codeInSession = (String) sessionStrategy.getAttribute(request, "image_code");
-
-		String codeInRequest;
-		try {
-			codeInRequest = ServletRequestUtils.getStringParameter(request.getRequest(), "imageCode");
-		} catch (ServletRequestBindingException e) {
-			throw new ValidateCodeException("获取验证码的值失败！");
-		}
-
-		if (StringUtils.isBlank(codeInRequest)) {
-			throw new ValidateCodeException("请填写验证码");
-		}
-
-		if (codeInSession == null) {
-			throw new ValidateCodeException("验证码不存在");
-		}
-
-		if (!StringUtils.equals(codeInRequest, codeInSession)) {
-			throw new ValidateCodeException("验证码不正确");
-		}
-	}
-
 }
