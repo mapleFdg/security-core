@@ -10,8 +10,10 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 
+import com.maple.security.core.properties.SecurityProperties;
 import com.maple.security.core.validate.code.ValidateCode;
 import com.maple.security.core.validate.code.ValidateCodeGenerator;
 
@@ -23,12 +25,16 @@ import com.maple.security.core.validate.code.ValidateCodeGenerator;
  *
  */
 @Component("imageValidateCodeGenerator")
-public class ImageValidateCodeGenerator implements ValidateCodeGenerator{
+public class ImageValidateCodeGenerator implements ValidateCodeGenerator {
+
+	private SecurityProperties securityProperties;
 
 	@Override
 	public ValidateCode generate(ServletWebRequest request) {
-		int width = 400;
-		int height = 50;
+		int width = ServletRequestUtils.getIntParameter(request.getRequest(), "width",
+				securityProperties.getCode().getImage().getWidth());
+		int height = ServletRequestUtils.getIntParameter(request.getRequest(), "height",
+				securityProperties.getCode().getImage().getHeight());
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
 		Graphics g = image.getGraphics();
@@ -48,7 +54,7 @@ public class ImageValidateCodeGenerator implements ValidateCodeGenerator{
 		}
 
 		String sRand = "";
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < securityProperties.getCode().getImage().getLength(); i++) {
 			String rand = String.valueOf(random.nextInt(10));
 			sRand += rand;
 			g.setColor(new Color(20 + random.nextInt(110), 20 + random.nextInt(110), 20 + random.nextInt(110)));
@@ -57,9 +63,9 @@ public class ImageValidateCodeGenerator implements ValidateCodeGenerator{
 
 		g.dispose();
 
-		return new ImageCode(image, sRand, 6000);
+		return new ImageCode(image, sRand, securityProperties.getCode().getImage().getExpireIn());
 	}
-	
+
 	/**
 	 * 生成随机背景条纹
 	 * 
