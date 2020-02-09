@@ -25,18 +25,17 @@ import com.maple.security.core.validate.code.ValidateCodeGenerator;
  * @author hzc
  *
  */
-@Component("imageValidateCodeGenerator")
+//@Component("imageValidateCodeGenerator")
 public class ImageValidateCodeGenerator implements ValidateCodeGenerator {
 
-	@Autowired
 	private SecurityProperties securityProperties;
 
 	@Override
 	public ValidateCode generate(ServletWebRequest request) {
 		int width = ServletRequestUtils.getIntParameter(request.getRequest(), "width",
-				securityProperties.getCode().getImage().getWidth());
+				getSecurityProperties().getCode().getImage().getWidth());
 		int height = ServletRequestUtils.getIntParameter(request.getRequest(), "height",
-				securityProperties.getCode().getImage().getHeight());
+				getSecurityProperties().getCode().getImage().getHeight());
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
 		Graphics g = image.getGraphics();
@@ -56,7 +55,7 @@ public class ImageValidateCodeGenerator implements ValidateCodeGenerator {
 		}
 
 		String sRand = "";
-		for (int i = 0; i < securityProperties.getCode().getImage().getLength(); i++) {
+		for (int i = 0; i < getSecurityProperties().getCode().getImage().getLength(); i++) {
 			String rand = String.valueOf(random.nextInt(10));
 			sRand += rand;
 			g.setColor(new Color(20 + random.nextInt(110), 20 + random.nextInt(110), 20 + random.nextInt(110)));
@@ -65,7 +64,7 @@ public class ImageValidateCodeGenerator implements ValidateCodeGenerator {
 
 		g.dispose();
 
-		return new ImageCode(image, sRand, securityProperties.getCode().getImage().getExpireIn());
+		return new ImageCode(image, sRand, getSecurityProperties().getCode().getImage().getExpireIn());
 	}
 
 	/**
@@ -87,6 +86,14 @@ public class ImageValidateCodeGenerator implements ValidateCodeGenerator {
 		int g = fc + random.nextInt(bc - fc);
 		int b = fc + random.nextInt(bc - fc);
 		return new Color(r, g, b);
+	}
+
+	public SecurityProperties getSecurityProperties() {
+		return securityProperties;
+	}
+
+	public void setSecurityProperties(SecurityProperties securityProperties) {
+		this.securityProperties = securityProperties;
 	}
 
 }

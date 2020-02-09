@@ -3,13 +3,10 @@
  */
 package com.maple.security.core.validate.code.sms;
 
-import org.springframework.stereotype.Component;
-
 /**
  * @author hzc
  *
  */
-@Component
 public class DefaultSmsCodeSender implements SmsCodeSender {
 
 	/*
