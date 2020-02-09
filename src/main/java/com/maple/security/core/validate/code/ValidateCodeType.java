@@ -18,6 +18,16 @@ public enum ValidateCodeType {
 		public String getParamNameOnValidate() {
 			return SecurityConstants.DEFAULT_PARAMETER_NAME_CODE_IMAGE;
 		}
+	},
+	
+	/**
+	 * 手机验证码
+	 */
+	SMS {
+		@Override
+		public String getParamNameOnValidate() {
+			return SecurityConstants.DEFAULT_PARAMETER_NAME_CODE_IMAGE;
+		}
 	};
 
 	/**
