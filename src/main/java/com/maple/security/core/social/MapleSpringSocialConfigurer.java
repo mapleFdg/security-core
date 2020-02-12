@@ -8,7 +8,7 @@ public class MapleSpringSocialConfigurer extends SpringSocialConfigurer {
 	private String filterProcessesUrl;
 	
 	public MapleSpringSocialConfigurer(String filterProcessesUrl) {
-		filterProcessesUrl = this.getFilterProcessesUrl();
+		this.filterProcessesUrl = filterProcessesUrl;
 	}
 	
 
