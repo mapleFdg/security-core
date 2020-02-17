@@ -9,10 +9,19 @@ package com.maple.security.core.properties;
  */
 public class BrowserProperties {
 	
+	/**
+	 * 注册页面
+	 */
 	private String signUpUrl = "/maple-signUp.html";
 
+	/**
+	 * 登录页面
+	 */
 	private String loginPage = SecurityConstants.DEFAULT_SIGN_IN_PAGE_URL;
 	
+	/**
+	 * 登录的类型 json 还是转发
+	 */
 	private LoginType loginType = LoginType.REDIRECT;
 	
 	/**

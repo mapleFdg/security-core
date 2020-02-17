@@ -13,7 +13,14 @@ public class ImageCodeProperties extends SmsCodeProperties {
 		setLength(4);
 	}
 	
+	/**
+	 * 图片宽度
+	 */
 	private int width = 67;
+	
+	/**
+	 * 图片长度
+	 */
 	private int height = 23;
 
 	public int getWidth() {

@@ -8,6 +8,13 @@ package com.maple.security.core.properties;
  *
  */
 public enum LoginType {
-
-	REDIRECT, JSON;
+	
+	/**
+	 * 转发到登录页
+	 */
+	REDIRECT,
+	/**
+	 * 以json的格式返回
+	 */
+	JSON;
 }

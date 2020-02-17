@@ -26,6 +26,9 @@ public class QQAutoConfig extends SocialAutoConfigurerAdapter {
 	@Autowired
 	private SecurityProperties securityProperties;
 
+	/**
+	 * 新建connectionFactory
+	 */
 	@Override
 	protected ConnectionFactory<?> createConnectionFactory() {
 

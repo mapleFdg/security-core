@@ -27,6 +27,9 @@ public class QQAdapter implements ApiAdapter<QQ> {
 		return true;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void setConnectionValues(QQ api, ConnectionValues values) {
 		
