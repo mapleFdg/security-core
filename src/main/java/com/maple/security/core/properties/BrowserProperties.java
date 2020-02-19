@@ -10,6 +10,11 @@ package com.maple.security.core.properties;
 public class BrowserProperties {
 	
 	/**
+	 * session配置信息类
+	 */
+	private SessionProperties session = new SessionProperties();
+	
+	/**
 	 * 注册页面
 	 */
 	private String signUpUrl = "/maple-signUp.html";
@@ -59,6 +64,14 @@ public class BrowserProperties {
 
 	public void setSignUpUrl(String signUpUrl) {
 		this.signUpUrl = signUpUrl;
+	}
+
+	public SessionProperties getSession() {
+		return session;
+	}
+
+	public void setSession(SessionProperties session) {
+		this.session = session;
 	}
 
 }
