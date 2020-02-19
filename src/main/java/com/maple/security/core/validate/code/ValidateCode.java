@@ -3,13 +3,19 @@
  */
 package com.maple.security.core.validate.code;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * @author hzc
  *
  */
-public class ValidateCode {
+public class ValidateCode implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1610861362581104396L;
 
 	private String code;
 
