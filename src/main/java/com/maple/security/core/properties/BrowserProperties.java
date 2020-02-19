@@ -18,6 +18,11 @@ public class BrowserProperties {
 	 * 注册页面
 	 */
 	private String signUpUrl = "/maple-signUp.html";
+	
+	/**
+	 * 退出登录页面
+	 */
+	private String signOutUrl;
 
 	/**
 	 * 登录页面
@@ -72,6 +77,14 @@ public class BrowserProperties {
 
 	public void setSession(SessionProperties session) {
 		this.session = session;
+	}
+
+	public String getSignOutUrl() {
+		return signOutUrl;
+	}
+
+	public void setSignOutUrl(String signOutUrl) {
+		this.signOutUrl = signOutUrl;
 	}
 
 }
