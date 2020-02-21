@@ -7,6 +7,8 @@ public class MapleSpringSocialConfigurer extends SpringSocialConfigurer {
 	
 	private String filterProcessesUrl;
 	
+	private SocialAuthenticationFilterPostProcessor socialAuthenticationFilterPostProcessor;
+	
 	public MapleSpringSocialConfigurer(String filterProcessesUrl) {
 		this.filterProcessesUrl = filterProcessesUrl;
 	}
@@ -17,6 +19,11 @@ public class MapleSpringSocialConfigurer extends SpringSocialConfigurer {
 		SocialAuthenticationFilter filter = (SocialAuthenticationFilter) super.postProcess(object);
 		
 		filter.setFilterProcessesUrl(getFilterProcessesUrl());
+		
+		// 后处理
+		if(getSocialAuthenticationFilterPostProcessor() != null) {
+			getSocialAuthenticationFilterPostProcessor().process(filter);
+		}
 		
 		return super.postProcess(object);
 	}
@@ -29,6 +36,16 @@ public class MapleSpringSocialConfigurer extends SpringSocialConfigurer {
 
 	public void setFilterProcessesUrl(String filterProcessesUrl) {
 		this.filterProcessesUrl = filterProcessesUrl;
+	}
+
+
+	public SocialAuthenticationFilterPostProcessor getSocialAuthenticationFilterPostProcessor() {
+		return socialAuthenticationFilterPostProcessor;
+	}
+
+
+	public void setSocialAuthenticationFilterPostProcessor(SocialAuthenticationFilterPostProcessor socialAuthenticationFilterPostProcessor) {
+		this.socialAuthenticationFilterPostProcessor = socialAuthenticationFilterPostProcessor;
 	}
 	
 }

@@ -34,12 +34,16 @@ public class SocialConfig extends SocialConfigurerAdapter {
 	
 	@Autowired(required = false)
 	private ConnectionSignUp connectionSignUp;
+	
+	@Autowired(required =  false)
+	private SocialAuthenticationFilterPostProcessor socialAuthenticationFilterPostProcessor;
 
 	@Bean
 	public SpringSocialConfigurer mapleSocialSecurityConfig() {
 		String filterProcessesUrl = securityProperties.getSocial().getFilterProcessesUrl();
-		SpringSocialConfigurer socialConfigurer = new MapleSpringSocialConfigurer(filterProcessesUrl);
+		MapleSpringSocialConfigurer socialConfigurer = new MapleSpringSocialConfigurer(filterProcessesUrl);
 		socialConfigurer.signupUrl(securityProperties.getBrowser().getSignUpUrl());
+		socialConfigurer.setSocialAuthenticationFilterPostProcessor(socialAuthenticationFilterPostProcessor);
 		return socialConfigurer;
 	}
 

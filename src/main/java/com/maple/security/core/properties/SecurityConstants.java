@@ -26,6 +26,11 @@ public interface SecurityConstants {
 	String DEFAULT_SIGN_IN_PROCESSING_URL_MOBILE = "/authentication/mobile";
 	
 	/**
+	 * 默认的手机验证码登录请求处理url
+	 */
+	String DEFAULT_SIGN_IN_PROCESSING_URL_OPENID = "/authentication/openid";
+	
+	/**
 	 * 默认的处理验证码的url前缀
 	 */
 	String DEFAULT_VALIDATE_CODE_URL_PREFIX = "/code";
