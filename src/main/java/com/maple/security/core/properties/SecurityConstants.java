@@ -54,4 +54,18 @@ public interface SecurityConstants {
 	 * session失效默认的跳转地址
 	 */
 	String DEFAULT_SESSION_INVALID_URL = "/maple-session-invalid.html";
+	
+	/**
+	 * 默认openid参数名
+	 */
+	String DEFAULT_PARAMETER_NAME_OPENID = "openId";
+	
+	/**
+	 * 默认providerId参数名
+	 */
+	String DEFAULT_PARAMETER_NAME_PROVIDERID = "providerId";
+	/**
+	 * 获取第三方用户信息的url
+	 */
+	String DEFAULT_SOCIAL_USER_INFO_URL = "/social/user";
 }

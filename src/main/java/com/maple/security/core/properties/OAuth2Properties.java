@@ -1,7 +1,16 @@
 package com.maple.security.core.properties;
 
+/**
+ * 
+ * @author hzc
+ *
+ */
 public class OAuth2Properties {
 
+	/**
+	 * 使用jwt时为token签名的秘钥
+	 * 
+	 */
 	private String jwtSigningKey = "maple";
 	
 	private String storeType;

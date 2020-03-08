@@ -16,9 +16,7 @@ import com.maple.security.core.properties.SecurityConstants;
 
 public class SmsAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
-	public static final String SPRING_SECURITY_FORM_MOBILE_KEY = "mobile";
-
-	private String mobileParameter = SPRING_SECURITY_FORM_MOBILE_KEY;
+	private String mobileParameter = SecurityConstants.DEFAULT_PARAMETER_NAME_MOBILE;
 	
 	private boolean postOnly = true;
 

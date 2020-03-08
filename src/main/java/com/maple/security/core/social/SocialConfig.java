@@ -16,8 +16,11 @@ import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 import com.maple.security.core.properties.SecurityProperties;
+import com.maple.security.core.social.support.MapleSpringSocialConfigurer;
+import com.maple.security.core.social.support.SocialAuthenticationFilterPostProcessor;
 
 /**
+ * 社交登录配置主类
  * 
  * @author hzc
  *
@@ -31,13 +34,19 @@ public class SocialConfig extends SocialConfigurerAdapter {
 
 	@Autowired
 	private SecurityProperties securityProperties;
-	
+
 	@Autowired(required = false)
 	private ConnectionSignUp connectionSignUp;
-	
-	@Autowired(required =  false)
+
+	@Autowired(required = false)
 	private SocialAuthenticationFilterPostProcessor socialAuthenticationFilterPostProcessor;
 
+	/**
+	 * 
+	 * 社交登录配置类，供浏览器或app模块引入设计登录配置用。
+	 * 
+	 * @return
+	 */
 	@Bean
 	public SpringSocialConfigurer mapleSocialSecurityConfig() {
 		String filterProcessesUrl = securityProperties.getSocial().getFilterProcessesUrl();
@@ -53,17 +62,25 @@ public class SocialConfig extends SocialConfigurerAdapter {
 				connectionFactoryLocator, Encryptors.noOpText());
 		// 可修改表的前缀，设置表前缀
 		repository.setTablePrefix("");
-		
-		if(connectionSignUp != null) {
+
+		if (connectionSignUp != null) {
 			repository.setConnectionSignUp(connectionSignUp);
 		}
 
 		return repository;
 	}
-	
+
+	/**
+	 * 
+	 * 用来处理注册流程的工具类
+	 * 
+	 * @param connectionFactoryLocator
+	 * @return
+	 */
 	@Bean
 	public ProviderSignInUtils providerSignInUtils(ConnectionFactoryLocator connectionFactoryLocator) {
-		return new ProviderSignInUtils(connectionFactoryLocator, getUsersConnectionRepository(connectionFactoryLocator));
+		return new ProviderSignInUtils(connectionFactoryLocator,
+				getUsersConnectionRepository(connectionFactoryLocator));
 	}
 
 }

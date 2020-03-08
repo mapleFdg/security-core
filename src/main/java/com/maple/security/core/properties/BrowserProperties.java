@@ -20,9 +20,16 @@ public class BrowserProperties {
 	private String signUpUrl = "/maple-signUp.html";
 	
 	/**
-	 * 退出登录页面
+	 * 退出成功时跳转的url，如果配置了，则跳到指定的url，如果没配置，则返回json数据。
 	 */
 	private String signOutUrl;
+	
+	/**
+	 * 登录成功后跳转的地址，如果设置了此属性，则登录成功后总是会跳到这个地址上。
+	 * 
+	 * 只在signInResponseType为REDIRECT时生效
+	 */
+	private String singInSuccessUrl;
 
 	/**
 	 * 登录页面
@@ -32,10 +39,10 @@ public class BrowserProperties {
 	/**
 	 * 登录的类型 json 还是转发
 	 */
-	private LoginType loginType = LoginType.REDIRECT;
+	private LoginResponseType loginType = LoginResponseType.REDIRECT;
 	
 	/**
-	 * 记住我的超时时间
+	 * 记住我的超时时间,默认1小时
 	 */
 	private int rememberMeSeconds = 3600;
 
@@ -47,11 +54,11 @@ public class BrowserProperties {
 		this.loginPage = loginPage;
 	}
 
-	public LoginType getLoginType() {
+	public LoginResponseType getLoginType() {
 		return loginType;
 	}
 
-	public void setLoginType(LoginType loginType) {
+	public void setLoginType(LoginResponseType loginType) {
 		this.loginType = loginType;
 	}
 
@@ -85,6 +92,14 @@ public class BrowserProperties {
 
 	public void setSignOutUrl(String signOutUrl) {
 		this.signOutUrl = signOutUrl;
+	}
+
+	public String getSingInSuccessUrl() {
+		return singInSuccessUrl;
+	}
+
+	public void setSingInSuccessUrl(String singInSuccessUrl) {
+		this.singInSuccessUrl = singInSuccessUrl;
 	}
 
 }

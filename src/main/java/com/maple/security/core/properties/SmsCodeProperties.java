@@ -19,7 +19,9 @@ public class SmsCodeProperties {
 	 */
 	private int expireIn = 60;
 
-	// 哪些请求需要验证验证码 /user,/user/*
+	/**
+	 * 要拦截的url，多个url用逗号隔开，ant pattern
+	 */
 	private String url = "";
 
 	public int getLength() {

@@ -7,7 +7,7 @@ package com.maple.security.core.properties;
  * @author hzc
  *
  */
-public enum LoginType {
+public enum LoginResponseType {
 	
 	/**
 	 * 转发到登录页

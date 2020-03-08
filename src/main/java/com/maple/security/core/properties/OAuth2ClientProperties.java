@@ -1,5 +1,12 @@
 package com.maple.security.core.properties;
 
+/**
+ * 
+ * 认证服务器注册的第三方应用配置项
+ * 
+ * @author hzc
+ *
+ */
 public class OAuth2ClientProperties {
 
 	private String clientId;

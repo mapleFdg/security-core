@@ -10,6 +10,12 @@ import org.springframework.stereotype.Component;
 import com.maple.security.core.properties.SecurityConstants;
 import com.maple.security.core.properties.SecurityProperties;
 
+/**
+ * 核心模块的授权配置提供器，安全模块涉及的url的授权配置在这里。
+ * 
+ * @author hzc
+ *
+ */
 @Component
 @Order(Integer.MIN_VALUE)
 public class MapleAuthorizeConfigProvider implements AuthorizeConfigProvider {

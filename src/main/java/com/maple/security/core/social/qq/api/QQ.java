@@ -3,8 +3,6 @@
  */
 package com.maple.security.core.social.qq.api;
 
-import java.io.IOException;
-
 /**
  * 
  * QQapi类

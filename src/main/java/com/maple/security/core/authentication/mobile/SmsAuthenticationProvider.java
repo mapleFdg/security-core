@@ -30,6 +30,7 @@ public class SmsAuthenticationProvider implements AuthenticationProvider {
 		}
 		
 		SmsAuthenticationToken tokenResult = new SmsAuthenticationToken(user, user.getAuthorities());
+		tokenResult.setDetails(smsAuthenticationToken.getDetails());
 		
 		return tokenResult;
 	}

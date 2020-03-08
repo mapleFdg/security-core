@@ -1,4 +1,4 @@
-package com.maple.security.core.social;
+package com.maple.security.core.social.support;
 
 public class SocialUserInfo {
 

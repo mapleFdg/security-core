@@ -15,12 +15,19 @@ import org.springframework.web.servlet.view.AbstractView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * 社交账号绑定状态视图
+ * 
+ * @author hzc
+ *
+ */
 @Component("connect/status")
 public class MapleConnectionStatusView extends AbstractView{
 
 	@Autowired
 	private ObjectMapper objectMapper;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
