@@ -34,6 +34,10 @@ public class MapleAuthorizeConfigProvider implements AuthorizeConfigProvider {
 		if (StringUtils.isNotBlank(securityProperties.getBrowser().getSignOutUrl())) {
 			config.antMatchers(securityProperties.getBrowser().getSignOutUrl()).permitAll();
 		}
+		
+		if (StringUtils.isNotBlank(securityProperties.getBrowser().getSignInFailureUrl())) {
+			config.antMatchers(securityProperties.getBrowser().getSignInFailureUrl()).permitAll();
+		}
 
 		return false;
 	}

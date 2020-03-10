@@ -29,7 +29,14 @@ public class BrowserProperties {
 	 * 
 	 * 只在signInResponseType为REDIRECT时生效
 	 */
-	private String singInSuccessUrl;
+	private String signInSuccessUrl;
+	
+	/**
+	 * 登录失败后跳转的地址，如果设置了此属性，则失败后总是会跳到这个地址上。
+	 * 
+	 * 只在signInResponseType为REDIRECT时生效
+	 */
+	private String signInFailureUrl;
 
 	/**
 	 * 登录页面
@@ -94,12 +101,21 @@ public class BrowserProperties {
 		this.signOutUrl = signOutUrl;
 	}
 
-	public String getSingInSuccessUrl() {
-		return singInSuccessUrl;
+	public String getSignInSuccessUrl() {
+		return signInSuccessUrl;
 	}
 
-	public void setSingInSuccessUrl(String singInSuccessUrl) {
-		this.singInSuccessUrl = singInSuccessUrl;
+	public void setSignInSuccessUrl(String signInSuccessUrl) {
+		this.signInSuccessUrl = signInSuccessUrl;
 	}
+
+	public String getSignInFailureUrl() {
+		return signInFailureUrl;
+	}
+
+	public void setSignInFailureUrl(String signInFailureUrl) {
+		this.signInFailureUrl = signInFailureUrl;
+	}
+
 
 }
