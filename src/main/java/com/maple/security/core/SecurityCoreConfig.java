@@ -1,5 +1,7 @@
 package com.maple.security.core;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,14 +18,4 @@ import com.maple.security.core.properties.SecurityProperties;
 @Configuration
 @EnableConfigurationProperties(SecurityProperties.class)
 public class SecurityCoreConfig {
-
-	/**
-	 * 声明加密方法
-	 * 
-	 * @return
-	 */
-	@Bean
-	public PasswordEncoder passwordEncod() {
-		return new BCryptPasswordEncoder();
-	}
 }
